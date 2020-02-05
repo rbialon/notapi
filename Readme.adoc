@@ -1,0 +1,18 @@
+:projectname: notapi
+
+= {projectname}
+
+{projectname} provides an API connector between https://developer.sipgate.io/push-api/api-reference/[sipgate.io Push API] and https://webservices.untermstrich.com/h3/rest:calls[untermstrich REST API].
+
+
+== Configuration
+
+.Environment Variables
+
+The following configuration variables have to be defined as environment variables, either by providing a `.env` file or exporting those variables prior to execution of {projectname}.
+
+WARNING: These variables can contain sensitive information. Make sure not to expose their visibility to external access and never commit them.
+
+.Phone extension mapping
+{projectname} coordinates call mappings according to the phone extension indicated by sipgate.
+To extract the respective extension for each API call, the phone number prefix has to be set in `settings.toml`.
