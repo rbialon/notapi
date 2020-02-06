@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+  notapi:
+    image: rbialon/notapi
+    ports:
+      - 8000
+    env:
+      - URL_PREFIX=${URL_PREFIX}
+      - PHONE_PREFIX=${PHONE_PREFIX}
+      - UNTERMSTRICH_URL=${UNTERMSTRICH_URL}
+      - UNTERMSTRICH_REST_USER=${UNTERMSTRICH_REST_USER}
+      - UNTERMSTRICH_REST_PASSWORD=${UNTERMSTRICH_REST_USER}
