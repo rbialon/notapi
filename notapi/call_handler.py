@@ -4,15 +4,20 @@ from xml.dom.minidom import Document
 
 import requests
 from flask import Blueprint, Response, abort, request
+from requests.auth import HTTPBasicAuth
 
 from .call_schema import CallSchema, EVENT_ANSWER, EVENT_HANGUP, EVENT_NEWCALL
 
-call_handler = Blueprint("call_handler", __name__)
-executor = ThreadPoolExecutor(max_workers=1)
-call_schema = CallSchema()
-
 PHONE_PREFIX = environ.get("PHONE_PREFIX")
 UNTERMSTRICH_URL = environ.get("UNTERMSTRICH_URL")
+
+UNTERMSTRICH_REST_USER = environ.get("UNTERMSTRICH_REST_USER")
+UNTERMSTRICH_REST_PASSWORD = environ.get("UNTERMSTRICH_REST_PASSWORD")
+
+call_handler = Blueprint("call_handler", __name__)
+call_schema = CallSchema()
+executor = ThreadPoolExecutor(max_workers=1)
+untermstrich_authentication = HTTPBasicAuth(UNTERMSTRICH_REST_USER, UNTERMSTRICH_REST_PASSWORD)
 
 
 @call_handler.route('/call', methods=["POST"])
@@ -66,18 +71,16 @@ def xml_response(phone: str, url: str) -> str:
     return doc.toxml(encoding="UTF-8")
 
 
-# TODO: Add untermstrich basic authentication
-
 def untermstrich_call(phone: str, dial: str, active_call: bool) -> None:
     url = f"{UNTERMSTRICH_URL}/rest/calls/call?phone={phone}&dial={dial}&active_call={active_call}"
-    requests.post(url)
+    requests.post(url, auth=untermstrich_authentication)
 
 
 def untermstrich_answer(phone: str, dial: str, active_call: str) -> None:
     url = f"{UNTERMSTRICH_URL}/rest/calls/call?phone={phone}&dial={dial}&active_call={active_call}&received=true"
-    requests.post(url)
+    requests.post(url, auth=untermstrich_authentication)
 
 
 def untermstrich_hangup(phone: str, dial: str, active_call: bool) -> None:
     url = f"{UNTERMSTRICH_URL}/rest/calls/call?phone={phone}&dial={dial}&active_call={active_call}&disconnected=true&set_to=true"
-    requests.post(url)
+    requests.post(url, auth=untermstrich_authentication)
