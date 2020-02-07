@@ -22,7 +22,7 @@ untermstrich_authentication = HTTPBasicAuth(UNTERMSTRICH_REST_USER, UNTERMSTRICH
 
 
 @call_handler.route('/call', methods=["POST"])
-def ca ll():
+def call():
     errors = call_schema.validate(request.form)
     if errors:
         abort(400, str(errors))
@@ -83,6 +83,5 @@ def untermstrich_answer(phone: str, dial: str, active_call: bool) -> None:
 
 
 def untermstrich_hangup(phone: str, dial: str, active_call: bool) -> None:
-    url = f"{UNTERMSTRICH_URL}/{UNTERMSTRICH_PATH}?phone={phone}&dial={dial}&active_call={active_call}&disconnected" \
-          f"=true&set_to=true"
+    url = f"{UNTERMSTRICH_URL}/{UNTERMSTRICH_PATH}?phone={phone}&dial={dial}&active_call={active_call}&disconnected=true&set_to=true"
     requests.post(url, auth=untermstrich_authentication)
