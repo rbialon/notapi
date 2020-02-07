@@ -39,7 +39,7 @@ def call():
         phone = request.form.get("to")
         dial = get_dial(request.form.get("from"))
 
-    active_call = direction == "out"
+    active_call = str(direction == "out").lower()
 
     response = None
     mimetype = None
