@@ -1,6 +1,15 @@
-:projectname: notapi
-
 = {projectname}
+:projectname: notapi
+:icons: font
+:icon-set: octicon
+:source-highlighter: rouge
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
 
 {projectname} provides an API connector between https://developer.sipgate.io/push-api/api-reference/[sipgate.io Push API] and https://webservices.untermstrich.com/h3/rest:calls[untermstrich REST API].
 
