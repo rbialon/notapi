@@ -1,11 +1,11 @@
 {
   "problemMatcher": [
     {
-      "owner": "flake8-error",
-      "severity": "error",
+      "owner": "flake8-warning",
+      "severity": "warning",
       "pattern": [
         {
-          "regexp": "^([^:]*):(\\d+):(\\d+)\\sE\\d+\\s(.*)$",
+          "regexp": "^([^:]*):(\\d+):(\\d+)\\sW\\d+\\s(.*)$",
           "file": 1,
           "line": 2,
           "column": 3,
