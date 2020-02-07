@@ -10,6 +10,7 @@ from .call_schema import CallSchema, EVENT_ANSWER, EVENT_HANGUP, EVENT_NEWCALL
 
 PHONE_PREFIX = environ.get("PHONE_PREFIX")
 UNTERMSTRICH_URL = environ.get("UNTERMSTRICH_URL")
+UNTERMSTRICH_PATH = "rest/calls/call"
 
 UNTERMSTRICH_REST_USER = environ.get("UNTERMSTRICH_REST_USER")
 UNTERMSTRICH_REST_PASSWORD = environ.get("UNTERMSTRICH_REST_PASSWORD")
@@ -72,15 +73,16 @@ def xml_response(phone: str, url: str) -> str:
 
 
 def untermstrich_call(phone: str, dial: str, active_call: bool) -> None:
-    url = f"{UNTERMSTRICH_URL}/rest/calls/call?phone={phone}&dial={dial}&active_call={active_call}"
+    url = f"{UNTERMSTRICH_URL}/{UNTERMSTRICH_PATH}?phone={phone}&dial={dial}&active_call={active_call}"
     requests.post(url, auth=untermstrich_authentication)
 
 
-def untermstrich_answer(phone: str, dial: str, active_call: str) -> None:
-    url = f"{UNTERMSTRICH_URL}/rest/calls/call?phone={phone}&dial={dial}&active_call={active_call}&received=true"
+def untermstrich_answer(phone: str, dial: str, active_call: bool) -> None:
+    url = f"{UNTERMSTRICH_URL}/{UNTERMSTRICH_PATH}?phone={phone}&dial={dial}&active_call={active_call}&received=true"
     requests.post(url, auth=untermstrich_authentication)
 
 
 def untermstrich_hangup(phone: str, dial: str, active_call: bool) -> None:
-    url = f"{UNTERMSTRICH_URL}/rest/calls/call?phone={phone}&dial={dial}&active_call={active_call}&disconnected=true&set_to=true"
+    url = f"{UNTERMSTRICH_URL}/{UNTERMSTRICH_PATH}?phone={phone}&dial={dial}&active_call={active_call}&disconnected" \
+          f"=true&set_to=true"
     requests.post(url, auth=untermstrich_authentication)
