@@ -1,4 +1,5 @@
 import os
+import time
 from xml.dom import minidom
 
 import pytest
@@ -25,7 +26,7 @@ def client():
     return app.app.test_client()
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture()
 def untermstrich_response():
     with responses.RequestsMock() as response:
         response.add(responses.POST, UNTERMSTRICH_URL)
@@ -63,6 +64,9 @@ def test_valid_new_call(client, untermstrich_response):
     assert element.hasAttribute("onHangup")
     assert element.getAttribute("onHangup") == f"http://localhost/{URL_PREFIX}/call"
 
+    # Allow asynchronous call to untermstrich to occur
+    time.sleep(.1)
+
     assert len(untermstrich_response.calls) == 1
     untermstrich_request = untermstrich_response.calls[0].request
 
@@ -90,6 +94,9 @@ def test_valid_answer(client, untermstrich_response):
     }
     response = client.post(CALL_URL, data=data)
     assert response.status_code == 200
+
+    # Allow asynchronous call to untermstrich to occur
+    time.sleep(.1)
 
     assert len(untermstrich_response.calls) == 1
     untermstrich_request = untermstrich_response.calls[0].request
@@ -119,6 +126,9 @@ def test_valid_hangup(client, untermstrich_response):
     }
     response = client.post(CALL_URL, data=data)
     assert response.status_code == 200
+
+    # Allow asynchronous call to untermstrich to occur
+    time.sleep(.1)
 
     assert len(untermstrich_response.calls) == 1
     untermstrich_request = untermstrich_response.calls[0].request
