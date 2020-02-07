@@ -5,6 +5,9 @@ verify_ssl = true
 
 [dev-packages]
 gunicorn = "*"
+pytest = "*"
+pytest-env = "*"
+responses = "*"
 
 [packages]
 flask = "*"
