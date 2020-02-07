@@ -22,7 +22,7 @@ untermstrich_authentication = HTTPBasicAuth(UNTERMSTRICH_REST_USER, UNTERMSTRICH
 
 
 @call_handler.route('/call', methods=["POST"])
-def call():
+def ca ll():
     errors = call_schema.validate(request.form)
     if errors:
         abort(400, str(errors))
