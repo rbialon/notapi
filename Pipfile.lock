@@ -174,9 +174,10 @@
         },
         "iniconfig": {
             "hashes": [
-                "sha256:aa0b40f50a00e72323cb5d41302f9c6165728fd764ac8822aa3fff00a40d56b4"
+                "sha256:80cf40c597eb564e86346103f609d74efce0f6b4d4f30ec8ce9e2c26411ba437",
+                "sha256:e5f92f89355a67de0595932a6c6c02ab4afddc6fcdc0bfc5becd0d60884d3f69"
             ],
-            "version": "==1.0.0"
+            "version": "==1.0.1"
         },
         "more-itertools": {
             "hashes": [
@@ -238,11 +239,11 @@
         },
         "responses": {
             "hashes": [
-                "sha256:7bb697a5fedeb41d81e8b87f152d453d5cab42dcd1691b6a7d6097e94d33f373",
-                "sha256:af94d28cdfb48ded0ad82a5216616631543650f440334a693479b8991a6594a2"
+                "sha256:cf55b7c89fc77b9ebbc5e5924210b6d0ef437061b80f1273d7e202069e43493c",
+                "sha256:fa125311607ab3e57d8fcc4da20587f041b4485bdfb06dd6bdf19d8b66f870c1"
             ],
             "index": "pypi",
-            "version": "==0.10.15"
+            "version": "==0.10.16"
         },
         "six": {
             "hashes": [
